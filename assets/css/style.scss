@@ -1,0 +1,133 @@
+* {
+    padding: 0;
+    margin: 0;
+    clear: both;
+}
+
+.container {
+    width: 300px;
+    height:100%;
+    max-height:380px;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.main-title {
+    position:relative;
+
+    h1 {
+        text-align: center;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .back-btn {
+        margin-right: auto;
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        border-radius: 4px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+
+        svg {
+            width: 24px;
+            height:24px;
+        }
+
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+}
+
+
+.service-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 15px 20px;
+
+    .card {
+        width: calc(50% - 10px);
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        padding: 20px 0px;
+        gap: 10px;
+        
+
+        svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .card-title {
+            font-weight: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        &.cookies-card {
+            background: #E83350;
+
+            svg {
+                * {
+                    fill: #B83227;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+
+        }
+        &.storage-card {
+            background: #F3B431;
+
+            svg {
+                * {
+                    fill: #F9DDA4;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+
+
+        }
+        &.history-card {
+            background: #3498DB;
+
+            svg {
+                * {
+                    fill: #0A79DF;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+
+        }
+    }
+}
+
+
+.rate-us {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    color: #DFAF2B;
+    text-align: center;
+    font-size: 16px;
+}
+

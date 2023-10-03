@@ -8,8 +8,8 @@
     ],
     "permissions": ["tabs", "activeTab", "webRequest", "cookies", "storage", "scripting", "history", "windows"],
     "action": {
-        "default_popup": "popup.html",
-        "default_icon": "assets/images/icon.png"
+        "default_popup": "popup.html", 
+        "default_icon": "assets/images/icon.png" 
     }
 }
 

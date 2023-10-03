@@ -1,0 +1,15 @@
+{
+    "name": "Data Cleaner",
+    "version": "1.0",
+    "description": "Extension to clear or customize data stored in cookies storage and history",
+    "manifest_version": 3,
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "permissions": ["tabs", "activeTab", "webRequest", "cookies", "storage", "scripting", "history", "windows"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "assets/images/icon.png"
+    }
+}
+

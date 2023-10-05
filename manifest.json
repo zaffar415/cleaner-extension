@@ -6,7 +6,7 @@
     "host_permissions": [
         "*://*/*"
     ],
-    "permissions": ["tabs", "activeTab", "webRequest", "cookies", "storage", "scripting", "history", "windows"],
+    "permissions": ["tabs", "activeTab", "webRequest", "cookies", "storage", "scripting", "history", "windows", "browsingData"],
     "action": {
         "default_popup": "popup.html", 
         "default_icon": "assets/images/icon.png" 

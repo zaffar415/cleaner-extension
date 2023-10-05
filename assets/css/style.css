@@ -4,11 +4,15 @@
   clear: both;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   width: 300px;
   height: 100%;
   max-height: 380px;
-  background: #f0f0f0;
+  background: #fff;
   color: #333;
 }
 
@@ -43,7 +47,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  row-gap: 15px;
   padding: 10px 15px 20px;
 }
 .service-cards .card {
@@ -100,4 +106,103 @@
   color: #DFAF2B;
   text-align: center;
   font-size: 16px;
+}
+
+label {
+  margin-bottom: 4px;
+  display: block;
+  font-size: 12px;
+}
+
+.form-container {
+  padding: 10px 15px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.labelTitle {
+  margin-bottom: 6px;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid #777;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.radio-group:last-child {
+  margin-bottom: 0px;
+}
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 0.15em solid #019031;
+  border-radius: 50%;
+  display: inline-block;
+}
+input[type=radio]::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: 120ms transform ease-in-out;
+  transform: translate(15%, 15%);
+  box-shadow: inset 1em 1em #019031;
+  position: absolute;
+  scale: 0;
+}
+input[type=radio]:checked::before {
+  scale: 1;
+}
+
+.button {
+  border: none;
+  background: #019031;
+  padding: 8px 24px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+input[type=submit] {
+  margin-top: 12px;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.select2 {
+  width: 100% !important;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 100px;
 }/*# sourceMappingURL=style.css.map */

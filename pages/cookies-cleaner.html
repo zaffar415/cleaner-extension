@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookies Cleaner</title>
+    <link rel="stylesheet" href="../assets/css/select2.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="container">
@@ -20,12 +21,42 @@
         </div>
     </header>
     <main>
-       Cookies Cleaner
+        <div class="form-container">
+
+            <form action="#" id="clear-cookies-form">
+                <label class="labelTitle">Clear Cookies</label>
+                <div class="form-group">
+                    <div class="input-group radio-group">
+                        <label><input type="radio" name="type" value="All" checked> All </label>
+                    </div>
+                    <div class="input-group radio-group">
+                        <label><input type="radio" name="type" value="Domain" > Specific Domain</label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="select-domain" style="display: none;">
+                    <label class="labelTitle">Select Domains</label>
+                    <div class="input-group">
+                        <select name="domain" id="" class="form-control select2" multiple placeholder="-- Select --">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Clear now" class="form-control button">
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
         <div class="rate-us">
             Rate us! ☆
         </div>
     </footer>
+
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/select2.min.js"></script>
+    <script src="./cookies-cleaner.js"></script>
+
 </body>
 </html>

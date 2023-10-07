@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaner all data</title>
+    <link rel="stylesheet" href="../assets/css/select2.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="container">
+    <header>
+        <div class="main-title">
+            <h1 class="">
+                <a href="../popup.html" class="back-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M5 12L11 6M5 12L11 18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                Clear All
+            </h1>
+        </div>
+    </header>
+    <main>
+
+        <div class="form-container">
+            <form action="#" id="clear-all-form">
+                <label class="labelTitle">Enter the domain name <i>leave empty if you want to clear all data</i></label>
+                <div class="form-group">
+                    <input type="text" name="domain" class="form-control" placeholder="example.com">
+                </div>
+    
+                <p>This operation will delete all the date cahce, cookies, localstorage and history</p>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Clear" class="form-control button">
+                </div>
+                
+            </form>
+    
+            <div class="confirmation-page" style="display: none;">
+                <h2>Are you sure ?</h2>
+                <p>This operation will wipe out all the data in the browser</p>
+    
+                <div class="buttons-container">
+                    <button class="button" id="clear-all">Clear All</button>
+                    <a href="../popup.html" class="button btn-grey">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="rate-us">
+            Rate us! ☆
+        </div>
+    </footer>
+
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/select2.min.js"></script>
+    <script src="./clear-all.js"></script>
+
+</body>
+</html>

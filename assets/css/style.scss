@@ -1,4 +1,5 @@
 $primary: #019031;
+$secondary: #707070;
 
 * {
     padding: 0;
@@ -127,6 +128,20 @@ a {
             }
 
         }
+
+        &.clean-all-card {
+            background: #27ae60;
+
+            svg {
+                * {
+                    fill: #037734;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+        }
     }
 }
 
@@ -146,6 +161,7 @@ label {
     margin-bottom: 4px;
     display: block;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .form-container {
@@ -193,6 +209,74 @@ label {
     }
 }
 
+#cookies-list, #history-list {
+    max-height: 150px;
+    overflow: auto;
+}
+
+.checkbox {
+    position: relative;
+    padding-bottom:10px;
+    max-height: 300px;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+
+        & + label {
+            padding-left: 25px;
+            padding-top: 2px;
+            min-height: 16px;
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &::before {
+                content:'';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #eee;
+                border-radius: 4px;
+            }
+            &::after {
+                content: "";
+                left: 7px;
+                top: 3px;
+                width: 4px;
+                height: 9px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+                position: absolute;
+                display: none;
+            }
+        }
+
+        &:checked + label::before {
+            background-color: $primary;
+        }
+
+        &:checked + label::after {
+            display: block;
+        }
+
+        
+          
+    }
+
+  
+
+   
+      
+}
+
 input[type='radio'] {
     appearance: none;
     background-color: #fff;
@@ -233,6 +317,11 @@ input[type='radio'] {
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
+
+    &.btn-grey {
+        background: $secondary;
+
+    }
 }
 input[type='submit'] {
     margin-top: 12px;
@@ -250,3 +339,29 @@ input[type='submit'] {
 .select2-container--default .select2-results>.select2-results__options {
     max-height: 100px;
 }
+
+
+
+
+
+// confirmation component
+.confirmation-page {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 16px;
+    }
+
+
+}
+

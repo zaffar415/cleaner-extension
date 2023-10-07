@@ -5,18 +5,15 @@
         chrome.cookies.getAll({}, function (cookies) {
             for (let i = 0; i < cookies.length; i++) {
                 let domainArray = cookies[i].domain.split('.')
-                let domain = ''
-                for(let i = 0; i< domainArray.length ; i++) {
-                    if(domainArray[i]) {
-                        domain += domainArray[i];
-                        if(domainArray[i+1]) {
-                            domain += '.'
-                        }
-                    }
-                } 
+
+                let domain = cookies[i].domain;
+                if(domain.charAt(0) == '.') {
+                    domain = domain.slice(1);
+                }
+
+                console.log(cookies[i]);
 
                 if($("select[name='domain'] option[value='"+domain+"']").length == 0) {
-                    // console.log(document.querySelector("select[name='domain'] option[value='"+domain+"']"));
                     $("select[name='domain']").append(`<option value="${domain}">${domain}</option>`);
                 }
             }
@@ -27,6 +24,67 @@
 
     loadDomains();
 
+
+    // 
+    $("#clear-cookies-form [name='type']").on('change', (e) => {
+        $("#select-domain").hide();
+        $("#cookies-list").hide();
+
+        if(e.target.value == 'Domain') {
+            $("#select-domain").show();
+            $("#cookies-list").show();
+            $("#select-domain .select2").select2();
+        } 
+    })
+
+    // Show Cookies List
+    $("#clear-cookies-form [name='domain']").on('change', async(e) => {
+        $("#cookies-list").append(`<div class="input-group checkbox">
+            <input type="checkbox" name="cookie" id="select-all" value="select-all">
+            <label>Select All</label>   
+        </div>`).show()
+        if($(e.target).val())  {
+            $(e.target).val().forEach(async (domain) => {
+                chrome.cookies.getAll({ domain }, function (cookies) {
+                    if (cookies.length === 0) {
+                        $("#cookies-list").html('<p>No cookies found for this domain.</p>');
+                    } else {
+                       
+                        cookies.forEach( async(cookie, index) => {
+                            console.log(cookie);
+                            $("#cookies-list").append(`<div class="input-group checkbox">
+                                <input type="checkbox" name="cookie" value="${cookie.name}" data-domain="${cookie.domain}" data-path="${cookie.path}">
+                                <label>${cookie.name}</label>
+                            </div>`);
+                        });
+                    }
+                });
+            });
+            
+        }
+        
+    })
+
+    // Select all and unselect all logix]c
+    $("#clear-cookies-form").on("change", "#cookies-list input", (e) => {
+        if($(e.target).val() == "select-all") {
+            if($(e.target).is(":checked")) {
+                $(e.target).closest(".checkbox").nextAll('.checkbox').find('input').prop("checked", true)
+            } else {
+                $(e.target).closest(".checkbox").nextAll('.checkbox').find('input').prop("checked", false)
+            }
+        } else {
+            console.log($("#cookies-list .checkbox ~ .checkbox input:checked").length, $("#cookies-list .checkbox ~ .checkbox input").length);
+            if($("#cookies-list .checkbox ~ .checkbox input:checked").length == $("#cookies-list .checkbox ~ .checkbox input").length) {
+                $("#cookies-list #select-all").prop("checked", true);
+            } else {
+                $("#cookies-list #select-all").prop("checked", false);
+            }
+        }
+    })
+
+
+    // Submit Handler
     $("#clear-cookies-form").on('submit', (e) => {
         e.preventDefault();
 
@@ -34,11 +92,8 @@
         console.log(form);
 
         let domains = []
-        let type = '';
+        let type = $("#clear-cookies-form [name='type']:checked").val();
         form.map((input) => {
-            if(input.name == 'type') {
-                type = input.value;
-            }
             if(input.name == 'domain') {
                 domains.push('https://' + input.value);
                 domains.push('http://' + input.value);
@@ -54,44 +109,48 @@
                 }, {
                     "cookies": true,
                 }, function() {
-                    alert('Cache cleared successfully!');
+                    alert('Cookies cleared successfully!');
                 });
                 break;
             case 'Domain':
-                chrome.browsingData.remove({
-                    "since": 0,
-                    originTypes: {
-                        unprotectedWeb: true,
-                        protectedWeb: true,
-                        extension: true,
-                    },
-                    "origins": domains,
-                }, {
-                    "cookies": true,
-                }, function() {
-                    alert('Cache cleared successfully!');
-                });
+                if($("#cookies-list #select-all").length && $("#cookies-list #select-all").is(":checked")) {
+                    chrome.browsingData.remove({
+                        "since": 0,
+                        originTypes: {
+                            unprotectedWeb: true,
+                            protectedWeb: true,
+                            extension: true,
+                        },
+                        "origins": domains,
+                    }, {
+                        "cookies": true,
+                    }, function() {
+                        alert('Cookies cleared successfully!');
+                    });
+                } else {
+
+                    $("#cookies-list .checkbox ~ .checkbox input:checked").each((i, elem) => {
+                        let domain = $(elem).data("domain");
+                        let path = $(elem).data("path");
+                        let name = $(elem).val();
+                        if(domain.charAt(0) == '.') {
+                            domain = domain.slice(1);
+                        }
+
+                        console.log(domain, path, name);
+
+                        chrome.cookies.remove({ url: `http://${domain}`, name: name });
+                        chrome.cookies.remove({ url: `https://${domain}`, name: name });
+
+                    })
+
+                    alert('Cookies cleared successfully!');
+
+                }
+
+                
                 break;
         }
-
-        // chrome.browsingData.remove({
-        //     "since": 0
-        // }, {
-        //     "appcache": true,
-        //     "cache": true,
-        //     "cookies": true,
-        //     "downloads": true,
-        //     "fileSystems": true,
-        //     "formData": true,
-        //     "history": true,
-        //     "indexedDB": true,
-        //     "localStorage": true,
-        //     "pluginData": true,
-        //     "passwords": true,
-        //     "webSQL": true
-        // }, function() {
-        //     alert('Cache cleared successfully!');
-        // });
 
         $("#clear-cookies-form").trigger("reset");
         loadDomains();
@@ -99,12 +158,4 @@
     })
 
 
-    $("#clear-cookies-form [name='type']").on('change', (e) => {
-        $("#select-domain").hide();
-
-        if(e.target.value == 'Domain') {
-            $("#select-domain").show();
-            $("#select-domain .select2").select2();
-        } 
-    })
 })();

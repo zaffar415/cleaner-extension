@@ -99,6 +99,15 @@ a {
 .service-cards .card.history-card .card-title {
   color: #fff;
 }
+.service-cards .card.clean-all-card {
+  background: #27ae60;
+}
+.service-cards .card.clean-all-card svg * {
+  fill: #037734;
+}
+.service-cards .card.clean-all-card .card-title {
+  color: #fff;
+}
 
 .rate-us {
   border-top: 1px solid #ddd;
@@ -112,6 +121,7 @@ label {
   margin-bottom: 4px;
   display: block;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .form-container {
@@ -155,6 +165,61 @@ label {
   font-size: 14px;
 }
 
+#cookies-list, #history-list {
+  max-height: 150px;
+  overflow: auto;
+}
+
+.checkbox {
+  position: relative;
+  padding-bottom: 10px;
+  max-height: 300px;
+}
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+.checkbox input + label {
+  padding-left: 25px;
+  padding-top: 2px;
+  min-height: 16px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.checkbox input + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+.checkbox input + label::after {
+  content: "";
+  left: 7px;
+  top: 3px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  display: none;
+}
+.checkbox input:checked + label::before {
+  background-color: #019031;
+}
+.checkbox input:checked + label::after {
+  display: block;
+}
+
 input[type=radio] {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -190,6 +255,9 @@ input[type=radio]:checked::before {
   font-size: 14px;
   cursor: pointer;
 }
+.button.btn-grey {
+  background: #707070;
+}
 
 input[type=submit] {
   margin-top: 12px;
@@ -205,4 +273,19 @@ input[type=submit] {
 
 .select2-container--default .select2-results > .select2-results__options {
   max-height: 100px;
+}
+
+.confirmation-page {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.confirmation-page h2 {
+  margin-bottom: 10px;
+}
+.confirmation-page p {
+  margin-bottom: 16px;
 }/*# sourceMappingURL=style.css.map */

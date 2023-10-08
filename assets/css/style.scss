@@ -100,11 +100,11 @@ a {
 
         }
         &.storage-card {
-            background: #F3B431;
+            background: #f1c40f;
 
             svg {
                 * {
-                    fill: #F9DDA4;
+                    fill: #f39c12;
                 }
             }
 
@@ -114,12 +114,38 @@ a {
 
 
         }
-        &.history-card {
-            background: #3498DB;
+        &.cache-card {
+            background: #e67e22;
 
             svg {
                 * {
-                    fill: #0A79DF;
+                    stroke: #d35400;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+        }
+        &.password-card {
+            background: #8a56f2;
+
+            svg {
+                * {
+                    stroke: #4c30c9;
+                }
+            }
+
+            .card-title {
+                color: #fff;
+            }
+        }
+        &.history-card {
+            background: #3498db;
+
+            svg {
+                * {
+                    fill: #2980b9;
                 }
             }
 

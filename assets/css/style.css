@@ -82,19 +82,37 @@ a {
   color: #fff;
 }
 .service-cards .card.storage-card {
-  background: #F3B431;
+  background: #f1c40f;
 }
 .service-cards .card.storage-card svg * {
-  fill: #F9DDA4;
+  fill: #f39c12;
 }
 .service-cards .card.storage-card .card-title {
   color: #fff;
 }
+.service-cards .card.cache-card {
+  background: #e67e22;
+}
+.service-cards .card.cache-card svg * {
+  stroke: #d35400;
+}
+.service-cards .card.cache-card .card-title {
+  color: #fff;
+}
+.service-cards .card.password-card {
+  background: #8a56f2;
+}
+.service-cards .card.password-card svg * {
+  stroke: #4c30c9;
+}
+.service-cards .card.password-card .card-title {
+  color: #fff;
+}
 .service-cards .card.history-card {
-  background: #3498DB;
+  background: #3498db;
 }
 .service-cards .card.history-card svg * {
-  fill: #0A79DF;
+  fill: #2980b9;
 }
 .service-cards .card.history-card .card-title {
   color: #fff;

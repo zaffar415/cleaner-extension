@@ -19,9 +19,6 @@
 
     loadDomains();
 
-
-
-
     $("#clear-history-form [name='type']").on('change', (e) => {
         $("#select-domain, #select-date").hide();
         $("#history-list").hide();
@@ -123,27 +120,7 @@
     $("#clear-history-form").on('submit', (e) => {
         e.preventDefault();
 
-        let form = $("#clear-history-form").serializeArray();
-        console.log(form);
-
-        let domains = []
         let type = $('[name="type"]:checked').val();;
-        let from_date = $('[name="from_date"]').val();
-        let to_date  = $('[name="to_date"]').val();
-        // form.map((input) => {
-        //     if(input.name == 'type') {
-        //         type = input.value;
-        //     }
-        //     if(input.name == 'domain') {
-        //         domains.push('https://' + input.value);
-        //         domains.push('http://' + input.value);
-        //     }
-        // })
-
-        // console.log(domains);
-
-
-
 
         switch(type) {
             case 'All': 

@@ -8,6 +8,8 @@
         
         inputDomain = $("#clear-all-form [name='domain']").val().replaceAll(['https://', 'https://'], '');
 
+        inputDomain = inputDomain.match(/[a-z0-9]+\.[a-z]+/)
+
         $(".confirmation-page p").text("This operation will wipe out all the data in the browser");
 
         if(inputDomain) {
@@ -31,7 +33,6 @@
         e.preventDefault();
 
         let clearData = {
-            "cache": true,
             "cookies": true,
             "localStorage": true,
             "history": true,
@@ -57,9 +58,6 @@
                     });
                 });
             });
-
-
-
         }
 
 
@@ -75,7 +73,7 @@
         //     // "indexedDB": true,
         //     "localStorage": true,
         //     // "pluginData": true,
-        //     // "passwords": true,
+        //     "passwords": true,
         //     // "webSQL": true
         // }
 

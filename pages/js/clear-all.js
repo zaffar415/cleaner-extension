@@ -5,15 +5,18 @@
 
     var isValidated = false;
 
+    // Set Error Message
     function setError(selector, message) {
         $(selector).parent().prepend('<span class="error">' + message + '</span>');
     }
 
+    // Show Confirmation message
     function showConfirmation(form) {
         $(form).hide();
         $(form).next().show();
     }
 
+    // Toggle input boxed on selecting the type
     $("#clear-all-form [name='type']").on('change', (e) => {
         $("#select-domain").hide();
 
@@ -23,6 +26,7 @@
         } 
     })
 
+    // Remove Errors in form change
     $("#clear-all-form").on('change',() => {
         $("#clear-all-form .error").remove();
     })
@@ -37,9 +41,6 @@
 
         let domains = []
         let type = $("#clear-all-form [name='type']:checked").val();
-       
-
-
 
         switch(type) {
             case 'All': 
@@ -87,10 +88,9 @@
     // Trigget Submit after confirmation
     $(".confirmation-page #clear").on('click', (e) => {
         console.log( $(e.target).closest(".confirmation-page").prev().trigger('submit'))
-        // $(e.target).closest(".confirmation-page").prev().submit();
     })
 
-    // Common Clear All Function
+    // Clear All Function
     function clearAll() {
         let clearData = {
             "cookies": true,

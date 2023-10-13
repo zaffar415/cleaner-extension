@@ -2,34 +2,32 @@
 
     var isValidated = false;
 
+    // Set Error Message
     function setError(selector, message) {
         $(selector).parent().prepend('<span class="error">' + message + '</span>');
     }
 
+    // Show Confirmation message
     function showConfirmation(form) {
         $(form).hide();
         $(form).next().show();
     }
 
+    // Load Domains on Initialize
     function loadDomains() {
         domainOptions = '';
-
         chrome.history.search({ text: ''}, function(historyItems) {
-            // const domainSet = new Set();
             for (const item of historyItems) {
                 const url = new URL(item.url);
-                //   domainSet.add(url.hostname);
                 if($("select[name='domain'] option[value='"+url.hostname+"']").length == 0) {
-                    // console.log(document.querySelector("select[name='domain'] option[value='"+domain+"']"));
                     $("select[name='domain']").append(`<option value="${url.hostname}">${url.hostname}</option>`);
                 }
             }
         });
-
     }
-
     loadDomains();
 
+    // Toggle input boxed on selecting the type
     $("#clear-history-form [name='type']").on('change', (e) => {
         $("#select-domain, #select-date").hide();
         $("#history-list").hide();
@@ -89,6 +87,7 @@
         }
     })
 
+    // Show History List by date filter
     $("#clear-history-form [name='from_date'], #clear-history-form [name='to_date']").on('change', async(e) => {
         $("#history-list").html(`<div class="input-group checkbox">
             <input type="checkbox" name="history" id="select-all" value="select-all">
@@ -123,7 +122,7 @@
         }
     })
 
-    // Select all and unselect all logix]c
+    // Select all and unselect all logic
     $("#clear-history-form").on("change", "#history-list input", (e) => {
         if($(e.target).val() == "select-all") {
             if($(e.target).is(":checked")) {
@@ -141,6 +140,7 @@
         }
     })
 
+    // Remove Errors in form change
     $("#clear-history-form").on('change',() => {
         $("#clear-history-form .error").remove();
     })

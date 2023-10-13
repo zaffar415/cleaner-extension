@@ -2,16 +2,27 @@
 
     var isValidated = false;
 
+    // Set Error Message
     function setError(selector, message) {
         $(selector).parent().prepend('<span class="error">' + message + '</span>');
     }
 
+    // Show Confirmation message
     function showConfirmation(form) {
         $(form).hide();
         $(form).next().show();
     }
 
+    // Toggle input boxed on selecting the type
+    $("#clear-storage-form [name='type']").on('change', (e) => {
+        $("#select-domain").hide();
 
+        if(e.target.value == 'Domain') {
+            $("#select-domain").show();
+        } 
+    })
+
+    // Remove Errors in form change
     $("#clear-storage-form").on('change',() => {
         $("#clear-storage-form .error").remove();
     })
@@ -30,10 +41,6 @@
             if(input.name == 'type') {
                 type = input.value;
             }
-            // if(input.name == 'domain') {
-            //     domains.push('https://' + input.value);
-            //     domains.push('http://' + input.value);
-            // }
         })
 
 
@@ -102,19 +109,11 @@
 
     })
 
-
     // Trigget Submit after confirmation
     $(".confirmation-page #clear").on('click', (e) => {
         console.log( $(e.target).closest(".confirmation-page").prev().trigger('submit'))
-        // $(e.target).closest(".confirmation-page").prev().submit();
     })
 
 
-    $("#clear-storage-form [name='type']").on('change', (e) => {
-        $("#select-domain").hide();
-
-        if(e.target.value == 'Domain') {
-            $("#select-domain").show();
-        } 
-    })
+    
 })();

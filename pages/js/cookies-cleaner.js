@@ -1,42 +1,36 @@
-(()  => {
+(()  => { 
 
     var isValidated = false;
 
+    // Set Error Message
     function setError(selector, message) {
         $(selector).parent().prepend('<span class="error">' + message + '</span>');
     }
 
+    // Show Confirmation message
     function showConfirmation(form) {
         $(form).hide();
         $(form).next().show();
     }
 
+    // Load Domains on Initialize
     function loadDomains() {
         domainOptions = '';
         chrome.cookies.getAll({}, function (cookies) {
             for (let i = 0; i < cookies.length; i++) {
-                let domainArray = cookies[i].domain.split('.')
-
                 let domain = cookies[i].domain;
                 if(domain.charAt(0) == '.') {
                     domain = domain.slice(1);
                 }
-
-                console.log(cookies[i]);
-
                 if($("select[name='domain'] option[value='"+domain+"']").length == 0) {
                     $("select[name='domain']").append(`<option value="${domain}">${domain}</option>`);
                 }
             }
         });
-        
-        
     }
-
     loadDomains();
 
-
-    // 
+    // Toggle input boxed on selecting the type
     $("#clear-cookies-form [name='type']").on('change', (e) => {
         $("#select-domain").hide();
         $("#cookies-list").hide();
@@ -76,7 +70,7 @@
         
     })
 
-    // Select all and unselect all logix]c
+    // Select all and unselect all logic
     $("#clear-cookies-form").on("change", "#cookies-list input", (e) => {
         if($(e.target).val() == "select-all") {
             if($(e.target).is(":checked")) {
@@ -94,7 +88,7 @@
         }
     })
 
-
+    // Remove Errors in form change
     $("#clear-cookies-form").on('change',() => {
         $("#clear-cookies-form .error").remove();
     })
@@ -188,15 +182,12 @@
 
         isValidated = true
 
-
-
     })
 
 
     // Trigget Submit after confirmation
     $(".confirmation-page #clear").on('click', (e) => {
         console.log( $(e.target).closest(".confirmation-page").prev().trigger('submit'))
-        // $(e.target).closest(".confirmation-page").prev().submit();
     })
 
 

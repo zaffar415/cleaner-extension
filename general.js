@@ -1,6 +1,4 @@
 (() => {
-    // $(".select2").select2();
-
     // Toast Message
     let urlParams = new URLSearchParams(window.location.search);
     if(urlParams.get('message')) {

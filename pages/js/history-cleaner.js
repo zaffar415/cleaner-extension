@@ -235,8 +235,6 @@
 
                 }
 
-
-
                 break;
         }
 
@@ -248,7 +246,6 @@
     // Trigget Submit after confirmation
     $(".confirmation-page #clear").on('click', (e) => {
         console.log( $(e.target).closest(".confirmation-page").prev().trigger('submit'))
-        // $(e.target).closest(".confirmation-page").prev().submit();
     })
 
 })();

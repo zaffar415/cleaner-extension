@@ -1,5 +1,16 @@
 (()  => {
 
+    var isValidated = false;
+
+    function setError(selector, message) {
+        $(selector).parent().prepend('<span class="error">' + message + '</span>');
+    }
+
+    function showConfirmation(form) {
+        $(form).hide();
+        $(form).next().show();
+    }
+
     function loadDomains() {
         domainOptions = '';
         chrome.cookies.getAll({}, function (cookies) {
@@ -39,7 +50,7 @@
 
     // Show Cookies List
     $("#clear-cookies-form [name='domain']").on('change', async(e) => {
-        $("#cookies-list").append(`<div class="input-group checkbox">
+        $("#cookies-list").html(`<div class="input-group checkbox">
             <input type="checkbox" name="cookie" id="select-all" value="select-all">
             <label>Select All</label>   
         </div>`).show()
@@ -84,9 +95,15 @@
     })
 
 
+    $("#clear-cookies-form").on('change',() => {
+        $("#clear-cookies-form .error").remove();
+    })
+
+
     // Submit Handler
     $("#clear-cookies-form").on('submit', (e) => {
         e.preventDefault();
+        $(e.target).find(".error").remove();
 
         let form = $("#clear-cookies-form").serializeArray();
         console.log(form);
@@ -104,57 +121,82 @@
 
         switch(type) {
             case 'All': 
-                chrome.browsingData.remove({
-                    "since": 0,
-                }, {
-                    "cookies": true,
-                }, function() {
-                    alert('Cookies cleared successfully!');
-                });
-                break;
-            case 'Domain':
-                if($("#cookies-list #select-all").length && $("#cookies-list #select-all").is(":checked")) {
+                showConfirmation("#clear-cookies-form");
+                if(isValidated) {
                     chrome.browsingData.remove({
                         "since": 0,
-                        originTypes: {
-                            unprotectedWeb: true,
-                            protectedWeb: true,
-                            extension: true,
-                        },
-                        "origins": domains,
                     }, {
                         "cookies": true,
                     }, function() {
-                        alert('Cookies cleared successfully!');
+                        window.location.href = '../popup.html?message=Cookies cleared successfully';
                     });
-                } else {
+                }
+                break;
+            case 'Domain':
 
-                    $("#cookies-list .checkbox ~ .checkbox input:checked").each((i, elem) => {
-                        let domain = $(elem).data("domain");
-                        let path = $(elem).data("path");
-                        let name = $(elem).val();
-                        if(domain.charAt(0) == '.') {
-                            domain = domain.slice(1);
-                        }
-
-                        console.log(domain, path, name);
-
-                        chrome.cookies.remove({ url: `http://${domain}`, name: name });
-                        chrome.cookies.remove({ url: `https://${domain}`, name: name });
-
-                    })
-
-                    alert('Cookies cleared successfully!');
-
+                if($("#clear-cookies-form [name='domain']").val().length == 0) {
+                    setError("#clear-cookies-form [name='domain']", "Please select the cookies to clear");
+                    return false;
                 }
 
-                
+                if($("#cookies-list .checkbox input:checked").length == 0) {
+                    setError("#clear-cookies-form #cookies-list input-group:first", "Please select the cookies to clear");
+                    return false;
+                }
+
+                showConfirmation("#clear-cookies-form");
+                if(isValidated) {
+
+                    if($("#cookies-list #select-all").length && $("#cookies-list #select-all").is(":checked")) {
+                        chrome.browsingData.remove({
+                            "since": 0,
+                            originTypes: {
+                                unprotectedWeb: true,
+                                protectedWeb: true,
+                                extension: true,
+                            },
+                            "origins": domains,
+                        }, {
+                            "cookies": true,
+                        }, function() {
+                            window.location.href = '../popup.html?message=Cookies cleared successfully';
+
+                        });
+                    } else {
+
+                        $("#cookies-list .checkbox ~ .checkbox input:checked").each((i, elem) => {
+                            let domain = $(elem).data("domain");
+                            let path = $(elem).data("path");
+                            let name = $(elem).val();
+                            if(domain.charAt(0) == '.') {
+                                domain = domain.slice(1);
+                            }
+
+                            console.log(domain, path, name);
+
+                            chrome.cookies.remove({ url: `http://${domain}`, name: name });
+                            chrome.cookies.remove({ url: `https://${domain}`, name: name });
+
+                        })
+
+                        window.location.href = '../popup.html?message=Cookies cleared successfully';
+
+                    }
+                }
                 break;
         }
 
-        $("#clear-cookies-form").trigger("reset");
-        loadDomains();
+        isValidated = true
 
+
+
+    })
+
+
+    // Trigget Submit after confirmation
+    $(".confirmation-page #clear").on('click', (e) => {
+        console.log( $(e.target).closest(".confirmation-page").prev().trigger('submit'))
+        // $(e.target).closest(".confirmation-page").prev().submit();
     })
 
 

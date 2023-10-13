@@ -10,6 +10,11 @@
     "action": {
         "default_popup": "popup.html",
         "default_icon": "assets/images/icon.png"
+    },
+    "icons": {
+        "16": "assets/images/icon.png",
+        "48": "assets/images/icon.png",
+        "128": "assets/images/icon.png"
     }
 }
 

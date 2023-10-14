@@ -46,7 +46,7 @@
 
     // Show History List
     $("#clear-history-form [name='domain']").on('change', async(e) => {
-        $("#history-list").html(`<div class="input-group checkbox">
+        $("#history-list").html(`<div class="input-group checkbox" title="Select All">
             <input type="checkbox" name="history" id="select-all" value="select-all">
             <label>Select All</label>
         </div>`).show()
@@ -66,12 +66,12 @@
                             if(day != date.getDate()) {
                                 day = date.getDate();
                                 let formatedDate = date.toLocaleString('en-us',{month:'short', year:'numeric', day:'numeric'})
-                               html = `<h2 class="date">${formatedDate}</h2><div class="input-group checkbox">
+                               html = `<h2 class="date">${formatedDate}</h2><div class="input-group checkbox" title="${result.url}">
                                     <input type="checkbox" name="history" value="${result.url}">
                                     <label>${result.url}</label>
                                 </div>`;    
                             } else {
-                                html = `<div class="input-group checkbox">
+                                html = `<div class="input-group checkbox" title="${result.url}">
                                     <input type="checkbox" name="history" value="${result.url}">
                                     <label>${result.url}</label>
                                 </div>`;
@@ -89,7 +89,7 @@
 
     // Show History List by date filter
     $("#clear-history-form [name='from_date'], #clear-history-form [name='to_date']").on('change', async(e) => {
-        $("#history-list").html(`<div class="input-group checkbox">
+        $("#history-list").html(`<div class="input-group checkbox" title="Select All">
             <input type="checkbox" name="history" id="select-all" value="select-all">
             <label>Select All</label>
         </div>`).show()
@@ -110,7 +110,7 @@
                 }  else {
                     for (const result of results) {
                         console.log(result);
-                        $("#history-list").append(`<div class="input-group checkbox">
+                        $("#history-list").append(`<div class="input-group checkbox" title="${result.url}">
                             <input type="checkbox" name="history" value="${result.url}">
                             <label>${result.url}</label>
                         </div>`);

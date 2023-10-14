@@ -44,7 +44,7 @@
 
     // Show Cookies List
     $("#clear-cookies-form [name='domain']").on('change', async(e) => {
-        $("#cookies-list").html(`<div class="input-group checkbox">
+        $("#cookies-list").html(`<div class="input-group checkbox" title="select All">
             <input type="checkbox" name="cookie" id="select-all" value="select-all">
             <label>Select All</label>   
         </div>`).show()
@@ -57,7 +57,7 @@
                        
                         cookies.forEach( async(cookie, index) => {
                             console.log(cookie);
-                            $("#cookies-list").append(`<div class="input-group checkbox">
+                            $("#cookies-list").append(`<div class="input-group checkbox" title="${cookie.name}">
                                 <input type="checkbox" name="cookie" value="${cookie.name}" data-domain="${cookie.domain}" data-path="${cookie.path}">
                                 <label>${cookie.name}</label>
                             </div>`);

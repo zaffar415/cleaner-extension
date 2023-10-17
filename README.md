@@ -101,6 +101,8 @@ The extension will be added to your browser, and you'll find its icon in the Chr
 ## 4. Conclusion
 The Data Extension is a valuable tool for maintaining your online privacy and keeping your browser clean and efficient. By following the guidelines and instructions in this documentation, you can make the most of the extension's features and protect your digital privacy while browsing the web.
 
+## 4. Screenshot
+![Screenshot1](./screenshot1.png)
 
 ## 5. Feature Updates. 
 **Password Manager**: A tool to manage your saved password.

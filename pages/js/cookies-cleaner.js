@@ -134,7 +134,7 @@
                 }
 
                 if($("#cookies-list .checkbox input:checked").length == 0) {
-                    setError("#clear-cookies-form #cookies-list input-group:first", "Please select the cookies to clear");
+                    setError("#clear-cookies-form #cookies-list .input-group:first", "Please select the cookies to clear");
                     return false;
                 }
 

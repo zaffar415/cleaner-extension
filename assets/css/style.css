@@ -99,32 +99,29 @@ header .banner .clear-all-button .btn:hover {
   box-shadow: 0px 0px 40px 4px #019031;
 }
 header .banner .clear-all-button .border-gradient {
-  border: 10px solid rgba(65, 209, 113, 0.361);
   border-radius: 50%;
   transition: all 300ms;
 }
 header .banner .clear-all-button .border-gradient:hover {
-  box-shadow: 0px 0px 10px 2px #019031;
+  box-shadow: 0px 0px 10px 6px #019031;
 }
 header .banner .clear-all-button .border-gradient a {
-  width: 70px;
-  height: 70px;
-  background: #00ab39;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   gap: 10px;
   color: #fff;
+  cursor: pointer;
 }
-header .banner .clear-all-button .border-gradient a .svgIcon, header .banner .clear-all-button .border-gradient a .svgIcon * {
-  width: 50px;
-  height: 50px;
+header .banner .clear-all-button .border-gradient a img {
   box-sizing: border-box;
-  fill: #fff;
+  pointer-events: none;
+  cursor: pointer;
 }
 
 #main {

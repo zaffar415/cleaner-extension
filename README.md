@@ -8,9 +8,9 @@
 2. Installation
 3. Use case
 4. Usage <br>
-    3.1.  Cleaning Cookies <br>
-    3.2.  Clearing Local Storage <br>
-    3.3.  Erasing Browsing History <br>
+    4.1.  Cleaning Cookies <br>
+    4.2.  Clearing Local Storage <br>
+    4.3.  Erasing Browsing History <br>
 5. Conclusion
 6. Screenshot
 7. Feature Updates

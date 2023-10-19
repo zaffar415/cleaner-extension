@@ -45,11 +45,8 @@ To install the extension, follow these steps:
 1. Open your Ulaa extensions page (or) [ulaa://extensions/](ulaa://extensions/).
 2. Turn on the developer mode.
 3. Select Load unpacked and select the root directory of the extension.
-<!-- 4. Locate the extension in the search results and click on it.
-5. Click the "Add to Chrome" button.
-6. In the pop-up window, click "Add Extension." -->
 
-The extension will be added to your browser, and you'll find its icon in the Chrome toolbar.
+The extension will be added to your browser, and you'll find its icon in the Ulaa toolbar.
 
 ## 3. Use Case 
 Use Case for cookie deletion using “DATA CLEANER EXTENSION”

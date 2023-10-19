@@ -56,7 +56,7 @@ The extension will be added to your browser, and you'll find its icon in the Chr
 ## 3. Use Case 
 Use Case for cookie deletion using “DATA CLEANER EXTENSION”
 
-    Consider a scenario where you have logged in to multiple websites through the course of your tasks, and at the end of the day, you need to log out. Typically, clearing the stored cookies on your browser will log you out of these websites. But, doing so will also log you out of ‘ALL’ of those sessions. If you wanted to logout of some sessions and retains some sessions, you would be unable to do that, because conventional cookie clearing extensions/tools will clear ‘ALL’ the stored cookies on your system. There is no way to choose which cookies you’d want to keep and what to remove. This is where ‘DATA CLEANER EXTENSION’ plays its part. 
+**Consider a scenario where you have logged in to multiple websites through the course of your tasks, and at the end of the day, you need to log out. Typically, clearing the stored cookies on your browser will log you out of these websites. But, doing so will also log you out of ‘ALL’ of those sessions. If you wanted to logout of some sessions and retains some sessions, you would be unable to do that, because conventional cookie clearing extensions/tools will clear ‘ALL’ the stored cookies on your system. There is no way to choose which cookies you’d want to keep and what to remove. This is where ‘DATA CLEANER EXTENSION’ plays its part.**
 
 This extension allows you to clear cookies selectively, by virtue of its domain-based filtering. You can mention the domains whose cookies you want to remove, and the extension will delete all the cookies from that specific domain and retain the rest.
 

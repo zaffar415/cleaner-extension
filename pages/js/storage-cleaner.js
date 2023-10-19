@@ -66,8 +66,8 @@
                }
                 break;
             case 'Domain':
-                inputDomain = $("#clear-storage-form [name='domain']").val().replaceAll(['https://', 'https://'], '');
-                inputDomain = inputDomain.match(/[a-z0-9]+\.[a-z]+/)
+                let inputDomainString = $("#clear-storage-form [name='domain']").val().replaceAll(new RegExp('http://|https://', 'g'), '');
+                inputDomain = inputDomainString.match(/[a-z0-9]+\.[a-z]+/)
 
                  
                 if(!inputDomain) {
@@ -79,8 +79,8 @@
 
                 if(isValidated) {
                     domains = [
-                        'https://' + inputDomain,
-                        'http://' + inputDomain
+                        'https://' + inputDomainString,
+                        'http://' + inputDomainString
                     ];
 
                     let clearData = {

@@ -37,7 +37,7 @@
         $(e.target).find(".error").remove();
 
         let form = $("#clear-all-form").serializeArray();
-        console.log(form);
+        // console.log(form);
 
         let domains = []
         let type = $("#clear-all-form [name='type']:checked").val();
@@ -58,24 +58,24 @@
                 break;
             case 'Domain':
 
-                inputDomain = $("#clear-all-form [name='domain']").val().replaceAll(['https://', 'https://'], '');
-                inputDomain = inputDomain.match(/[a-z0-9]+\.[a-z]+/)
-                
+                let inputDomainString = $("#clear-all-form [name='domain']").val().replaceAll(new RegExp('http://|https://', 'g'), '');
+                inputDomain = inputDomainString.match(/[a-z0-9]+\.[a-z]+/)
+                console.log(inputDomainString);
                 if(!inputDomain) {
                     setError("#clear-all-form input[name='domain']", "Please enter domain");
                     return false;
                 }
                 form.map((input) => {
                     if(input.name == 'domain') {
-                        domains.push('https://' + input.value);
-                        domains.push('http://' + input.value);
+                        domains.push('https://' + inputDomainString);
+                        domains.push('http://' + inputDomainString);
                     }
                 })
                 $(".confirmation-page p").text("This operation will wipe out all the data in the " + inputDomain);
                 showConfirmation("#clear-all-form");
 
                 if(isValidated) {
-                    clearAll();
+                    clearAll(domains, inputDomain[0]);
                 }
 
                 break;
@@ -91,7 +91,7 @@
     })
 
     // Clear All Function
-    function clearAll() {
+    function clearAll(domains = [], inputDomain = '') {
         let clearData = {
             "cookies": true,
             "localStorage": true,
@@ -111,6 +111,7 @@
         if(domains.length) {
             options.origins = domains;
             clearData.history = false;
+            clearData.passwords = false;
 
             chrome.history.search({ text: inputDomain }, function (results) {
                 results.forEach(function (result) {
@@ -136,6 +137,7 @@
         //     // "webSQL": true
         // }
 
+        console.log(options.origins)
         chrome.browsingData.remove(options, clearData, function() {
             window.location.href = '../popup.html?message=Data cleared successfully';
         });

@@ -43,8 +43,8 @@ body {
 
     &.home-page {
        .container {
-         max-height:400px;
-         overflow: auto;
+        //  max-height:400px;
+        //  overflow: auto;
        }
 
        header {
@@ -52,7 +52,7 @@ body {
        }
 
        #main {
-        margin-top: 280px;
+        margin-top: 250px;
        }
     }
     
@@ -107,7 +107,7 @@ header {
                 text-align: center;
                 border-radius: 4px;
                 font-size: 14px;
-                color: $primary;
+                color: #000;
                 // border: 2px solid $primary;
                 font-weight: 500;
                 transition: all 300ms;
@@ -168,23 +168,10 @@ header {
     margin-top: 60px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    padding: 20px;
-    padding-top: 30px;
+    padding: 15px;
     width: 100%;
     box-sizing: border-box;
 
-    &::before {
-        content: '';
-        position: absolute;
-        width: 50px;
-        height: 3px;
-        border-radius: 4px;
-        background-color: #333;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%)
-        ;
-    }
 }
 
 
@@ -672,7 +659,7 @@ input[type='radio'] {
 
 
 .button {
-    border: 3px solid $primary;
+    border: none;
     background: $primary;
     padding: 8px 24px;
     color: #fff;
@@ -684,17 +671,14 @@ input[type='radio'] {
 
     &.btn-grey {
         background: $secondary;
-        border:3px solid $secondary;
 
         &:hover {
-            background: none;
-            color: $secondary;
+            background: #585858;
         }
     }
 
     &:hover {
-        background: none;
-        color: $primary;
+        background: #037529;
     }
 }
 input[type='submit'] {
